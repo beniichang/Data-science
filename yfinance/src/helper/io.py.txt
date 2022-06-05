@@ -1,0 +1,26 @@
+import os
+
+def split_path(full_path):
+"""
+split full file path into directory name, file name, and extensions
+if only file name is passed, the top working directory is returned as file directory
+"""
+
+path_splits = os.path.split(os.path.abspath(full_path))
+directory = path_split[0]
+file_splits = os.path.splitext(path_splits[1])
+filename = file_splits[0]
+extension = file_splits[1]
+
+return directory, filename, extension
+
+
+def get_full_path_from_rel(base, rel_path):
+	"""
+	create a full path from relative path
+	"""
+	return os.path.abspath(
+		os.path.join(
+			os.path.dirname(os.path.abspath(base)), rel_path,
+		)
+	)
